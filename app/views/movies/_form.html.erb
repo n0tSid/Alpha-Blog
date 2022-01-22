@@ -1,0 +1,24 @@
+<% if @movie.errors.any?  %>
+  <p>Make sure you aren't making the following mistakes</p>
+  <ul>
+    <% @movie.errors.full_messages.each do |err| %>
+      <li><%= err %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with(model: @movie, local: true) do |form| %>
+  <p>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :genre %>
+    <%= form.text_area :genre %>
+  </p>
+
+  <%= form.submit %>
+
+  <br/>
+<% end %>
