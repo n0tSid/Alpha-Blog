@@ -16,7 +16,6 @@ class MoviesController < ApplicationController
     end
 
     def create
-      byebug
       @movie = Movie.new(params.require(:movie).permit(:name, :genre))
       if @movie.save
         flash[:notice] = 'Movie Added successfully'
