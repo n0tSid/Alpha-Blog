@@ -17,6 +17,7 @@ class MoviesController < ApplicationController
 
     def create
       @movie = Movie.new(params.require(:movie).permit(:name, :genre))
+      @movie.user = User.first
       if @movie.save
         flash[:notice] = 'Movie Added successfully'
         redirect_to @movie
