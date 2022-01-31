@@ -5,7 +5,8 @@
     <div class="col-8 mt-4">
       <div class="card text-center shadow mb-5 bg-white rounded">
         <div class="card-header font-italic">
-            by <%= movie.user.username %>
+            by <%= @movie.user.username %>
+            <%= link_to gravatar_for(@movie.user, size: 100), user_path(@movie.user) %>
         </div>
         <div class="card-body">
           <p class="card-text"><%= @movie.genre %></p>
