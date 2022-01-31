@@ -49,7 +49,7 @@ class MoviesController < ApplicationController
     end
 
     def require_same_user
-      if current_user != @movie.user
+      if current_user != @movie.user && !current_user.admin?
         flash[:alert] = "You are not authorised to perform this action"
         redirect_to @movie
       end

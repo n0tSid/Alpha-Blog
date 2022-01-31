@@ -10,7 +10,7 @@
         </div>
         <div class="card-body">
           <p class="card-text"><%= @movie.genre %></p>
-          <% if logged_in? && current_user == @movie.user %>
+          <% if logged_in? && (current_user == @movie.user || current_user.admin?) %>
             <%= link_to "Edit", edit_movie_path(@movie), class: "btn btn-outline-primary" %>
             <%= link_to "Delete", movie_path(@movie), class: "btn btn-outline-danger", method: :delete, data: { confirm: "Are you sure" } %>
           <% end %>
