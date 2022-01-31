@@ -11,8 +11,10 @@
             <h5 class="card-title"><%= link_to movie.name, movie_path(movie), class: "text-success" %></h5>
             <p class="card-text"><%= movie.genre %></p>
             <%= link_to "View", movie_path(movie), class: "btn btn-outline-success" %>
-            <%= link_to "Edit", edit_movie_path(movie), class: "btn btn-outline-primary" %>
-            <%= link_to "Delete", movie_path(movie), class: "btn btn-outline-danger", method: :delete, data: { confirm: "Are you sure" } %>
+            <% if logged_in? && movie.user == current_user %>
+              <%= link_to "Edit", edit_movie_path(movie), class: "btn btn-outline-primary" %>
+              <%= link_to "Delete", movie_path(movie), class: "btn btn-outline-danger", method: :delete, data: { confirm: "Are you sure" } %>
+            <% end %>
           </div>
           <div class="card-footer text-muted">Created <%= time_ago_in_words(movie.created_at) %> ago, 
             Updated <%= time_ago_in_words(movie.updated_at) %> ago

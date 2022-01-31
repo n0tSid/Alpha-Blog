@@ -6,12 +6,14 @@
       <div class="card text-center shadow mb-5 bg-white rounded">
         <div class="card-header font-italic">
             by <%= @movie.user.username %>
-            <%= link_to gravatar_for(@movie.user, size: 100), user_path(@movie.user) %>
+            <%= link_to gravatar_for(@movie.user, size: 100), user_path(@movie.user)%>
         </div>
         <div class="card-body">
           <p class="card-text"><%= @movie.genre %></p>
-          <%= link_to "Edit", edit_movie_path(@movie), class: "btn btn-outline-primary" %>
-          <%= link_to "Delete", movie_path(@movie), class: "btn btn-outline-danger", method: :delete, data: { confirm: "Are you sure" } %>
+          <% if logged_in? && current_user == @movie.user %>
+            <%= link_to "Edit", edit_movie_path(@movie), class: "btn btn-outline-primary" %>
+            <%= link_to "Delete", movie_path(@movie), class: "btn btn-outline-danger", method: :delete, data: { confirm: "Are you sure" } %>
+          <% end %>
         </div>
         <div class="card-footer text-muted">Created <%= time_ago_in_words(@movie.created_at) %> ago, 
           Updated <%= time_ago_in_words(@movie.updated_at) %> ago
