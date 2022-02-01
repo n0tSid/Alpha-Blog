@@ -33,6 +33,10 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3', '~> 1.4'
+  # testing framework
+  # gem 'rspec-rails', '~> 5.x'
+  # for geenrating automated test inputs
+  # gem 'factory_bot_rails'
 end
 
 group :development do
