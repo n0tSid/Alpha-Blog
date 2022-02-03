@@ -18,7 +18,7 @@ class MoviesController < ApplicationController
     end
 
     def create
-      @movie = Movie.new(params.require(:movie).permit(:name, :genre))
+      @movie = Movie.new(movie_params)
       @movie.user = current_user
       if @movie.save
         flash[:notice] = 'Movie Added successfully'
@@ -29,7 +29,7 @@ class MoviesController < ApplicationController
     end
 
     def update
-      if @movie.update(params.require(:movie).permit(:name, :genre))
+      if @movie.update(movie_params)
         flash[:notice] = "Movie info updated"
         redirect_to @movie
       else
@@ -46,6 +46,10 @@ class MoviesController < ApplicationController
 
     def set_movie
       @movie = Movie.find(params[:id])
+    end
+
+    def movie_params
+      params.require(:movie).permit(:name, :description, category_ids: [])
     end
 
     def require_same_user

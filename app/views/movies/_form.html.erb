@@ -12,9 +12,17 @@
         </div>
 
         <div class="form-group row">
-          <%= form.label :genre, class: "col-2 col-form-label text-light" %>
+          <%= form.label :description, class: "col-2 col-form-label text-light" %>
           <div class="col-10">
-            <%= form.text_area :genre, rows: 10, class: "form-control shadow rounded", placeholder: "Description of the movie" %>
+            <%= form.text_area :description, rows: 10, class: "form-control shadow rounded", placeholder: "Description of the movie" %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= form.label :category, class: "col-2 col-form-label text-light" %>
+          <div class="col-10">
+            <%= form.collection_select(:category_ids, Category.all, :id, :name, 
+            { prompt: "Select categories from the list below " }, { multiple: true, size: 3, class: "custom-select shadow rounded" } ) %>
           </div>
         </div>
 

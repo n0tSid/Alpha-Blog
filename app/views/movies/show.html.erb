@@ -7,9 +7,12 @@
         <div class="card-header font-italic">
             by <%= @movie.user.username %>
             <%= link_to gravatar_for(@movie.user, size: 100), user_path(@movie.user)%>
+            <% if @movie.categories.any? %>
+              <div class="mt-2"><%= render @movie.categories %></div>
+            <% end %>
         </div>
         <div class="card-body">
-          <p class="card-text"><%= @movie.genre %></p>
+          <p class="card-text"><%= @movie.description %></p>
           <% if logged_in? && (current_user == @movie.user || current_user.admin?) %>
             <%= link_to "Edit", edit_movie_path(@movie), class: "btn btn-outline-primary" %>
             <%= link_to "Delete", movie_path(@movie), class: "btn btn-outline-danger", method: :delete, data: { confirm: "Are you sure" } %>
